@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public Transform heartTransform;
     public GameObject heartPrefab;
     public int maxHealth;
-    public int health;
+    private int health;
     void Awake()
     {
         health = maxHealth;
@@ -30,6 +30,19 @@ public class PlayerHealth : MonoBehaviour
 
         if(health<=0)
             GameManager.instance.GameOver();
+    }
+
+    public void IncreaseHealth()
+    {
+        if(health==maxHealth) return;
+
+        Color newColor = hearts[health].GetComponent<Image>().color;
+
+        newColor.a = 1;
+
+        hearts[health].GetComponent<Image>().color = newColor;
+
+        health++;
     }
 
     void Start()
