@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerlmd : MonoBehaviour
 {
     private Rigidbody2D rb;
 
@@ -10,10 +10,16 @@ public class PlayerController : MonoBehaviour
     [Tooltip("玩家向右的持续移动速度")]
     [SerializeField] private float runSpeed = 5f; // 可在Inspector面板调整
     [SerializeField] private Vector2 currentVelocity;
+    [SerializeField] private float currentScore = 0;
+    [SerializeField] private float[] accelerateScore = {250,600,1000};//加速时的分数
+    [SerializeField] private float[] accelerate = {10,15,20};
+    private int accelerateCount = 0;
+    private int i = 0;
 
     [Header("跳跃设置")]
     [Tooltip("跳跃力")]
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float secondJumpForce = 4f;
     [SerializeField] private Vector2 jumpVelocity;
 
     [Header("二段跳设置")]
@@ -47,12 +53,17 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        currentScore += Time.deltaTime * 10;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
+
+        Accelerate();
     }
 
+    #region 跳跃
     public void Jump()
     {
         // 只有剩余跳跃次数>0时才能跳
@@ -60,17 +71,18 @@ public class PlayerController : MonoBehaviour
         {
             // 保留x轴速度，设置y轴跳跃速度
             jumpVelocity = rb.velocity;
-            jumpVelocity.y = jumpForce;
+            if(currentJumpCount == 2) jumpVelocity.y = jumpForce;
+            else if(currentJumpCount == 1) jumpVelocity.y = secondJumpForce;
             rb.velocity = jumpVelocity;
 
             // 跳跃后减少剩余次数
             currentJumpCount--;
 
-            // 二段跳时可以调整跳跃力度（比如二段跳跳得低一点）
-             if (currentJumpCount == 0) jumpForce *= 0.8f;
         }
     }
+    #endregion
 
+    # region 跳跃射线检测
     /// <summary>
     /// 检测是否在地面，落地后重置跳跃次数
     /// </summary>
@@ -102,4 +114,18 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(checkPos, checkEndPos); // 绘制检测直线
         Gizmos.DrawWireSphere(checkPos, 0.05f); // 起点小原点（可选）
     }
+    #endregion
+
+    #region 加速
+    public void Accelerate()
+
+    {
+        if (i <= 2 && currentScore >= accelerateScore[i] && accelerateCount == i)
+        {
+            accelerateCount++;
+            runSpeed = accelerate[i];
+            i++;
+        }
+    }
+    #endregion
 }
