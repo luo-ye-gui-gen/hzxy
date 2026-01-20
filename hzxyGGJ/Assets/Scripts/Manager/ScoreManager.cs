@@ -34,7 +34,6 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 切换场景不销毁（可选）
         }
         else
         {
@@ -42,7 +41,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         // 初始化分数和UI显示
         currentScore = 0;

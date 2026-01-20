@@ -35,6 +35,7 @@ public class ResumeButton : MonoBehaviour
         if (GameManager.instance.isGamePaused)
         {
             GameManager.instance.Pause();
+
         }
     }
     

@@ -27,7 +27,6 @@ public class PauseButton : MonoBehaviour
         if (!GameManager.instance.isGamePaused)
         {
             GameManager.instance.Pause();
-           
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         
+    }
+
+    private void OnEnable()
+    {
+        ResetGameState();
     }
 
     private void Update()
@@ -38,16 +44,15 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        //AudioListener.pause = pause;后续用
-        
         isGamePaused = !isGamePaused;
-        //继续
+        //变继续
         if (!isGamePaused) StartCoroutine(CountdownToResume());
-        //暂停
+        //变暂停
         if (isGamePaused)
         {
             ResumeButton.instance.resumeButton.gameObject.SetActive(isGamePaused);
-            PauseButton.instance.gameObject.SetActive(!isGamePaused);
+            RestartButton.instance.restartButton.gameObject.SetActive(isGamePaused);
+            PauseButton.instance.pauseButton.gameObject.SetActive(!isGamePaused);
             Time.timeScale = isGamePaused ? 0 : 1;
         }
     }
@@ -61,6 +66,7 @@ public class GameManager : MonoBehaviour
         isIEnumerator = true;
         ResumeButton.instance.countdownText.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(isGamePaused);
+        RestartButton.instance.restartButton.gameObject.SetActive(isGamePaused);
         int countdown = 3;
         while (countdown > 0)
         {
@@ -82,5 +88,14 @@ public class GameManager : MonoBehaviour
         PauseButton.instance.gameObject.SetActive(!isGamePaused);
         Time.timeScale = isGamePaused ? 0 : 1;
         isIEnumerator = false;
+    }
+
+    public void ResetGameState()
+    {
+        ScoreManager.Instance.ResetScore();
+        playerHealth.ResetHealth();
+        isGamePaused = false;
+        Time.timeScale = 1;
+        AudioListener.pause = false;
     }
 }

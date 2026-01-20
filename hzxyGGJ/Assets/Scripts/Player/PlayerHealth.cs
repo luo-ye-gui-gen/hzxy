@@ -51,7 +51,10 @@ public class PlayerHealth : MonoBehaviour
         {
             hearts.Add(Instantiate(heartPrefab,heartTransform));
         }
+    }
 
-        
+    public void ResetHealth()
+    {
+        health = 0;
     }
 }
