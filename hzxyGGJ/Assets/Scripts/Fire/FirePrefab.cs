@@ -7,26 +7,27 @@ public class FirePrefab : MonoBehaviour
 {
     private float xYelocity;
     private Rigidbody2D rb;
+    private float liveTime;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = new Vector2(xYelocity,0);
+
+        Destroy(gameObject,liveTime);
     }
 
-    public void SetupFirePrefab(float _xYelocity)
+    public void SetupFirePrefab(float _xYelocity,float _liveTime)
     {
         xYelocity = _xYelocity;
+        liveTime = _liveTime;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(collision.tag);
         if (collision.tag == "Ice")
         {
-            //Ice iceScript = collision.GetComponent<Ice>();
-
             Destroy(collision.gameObject);
 
             Destroy(gameObject);
@@ -34,8 +35,9 @@ public class FirePrefab : MonoBehaviour
 
         if(collision.tag == "Bomb")
         {
-            
             collision.GetComponent<BombExplosion>().SetBombActive();
+
+            Destroy(gameObject);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+    public float FireLiveTime;
     public List<GameObject> smallFire = new();
     public Transform smallFireTransform;
     public GameObject fireUIPrefab;
@@ -52,7 +53,7 @@ public class Fire : MonoBehaviour
 
         FirePrefab newScript =  newFire.GetComponent<FirePrefab>();
 
-        newScript.SetupFirePrefab(xYelocity + GetComponent<Rigidbody2D>().velocity.x);
+        newScript.SetupFirePrefab(xYelocity + GetComponent<Rigidbody2D>().velocity.x,FireLiveTime);
     }
 
     public void FireIncrease()

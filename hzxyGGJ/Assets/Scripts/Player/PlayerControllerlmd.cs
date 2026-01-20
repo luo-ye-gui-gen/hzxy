@@ -41,8 +41,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentJumpCount = maxJumpCount;
         originJumpForce = jumpForce;
-        // 获取自身碰撞体，用于射线检测忽略自身
-        rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
     }
 
     private void FixedUpdate()

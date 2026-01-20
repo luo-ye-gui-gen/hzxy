@@ -20,6 +20,7 @@ public class BombExplosion : MonoBehaviour
     private int lastCountNum;
     private bool isStarted = false; // 默认未激活
     private float initialCountDown; // 缓存初始倒计时
+    private bool firstTextPop;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class BombExplosion : MonoBehaviour
         initialCountDown = bombCountDown; // 缓存初始值
         lastCountNum = Mathf.CeilToInt(initialCountDown);
         hasExploded = false; // 初始化爆炸状态
+        firstTextPop = true;
     }
 
     void Update()
@@ -38,8 +40,13 @@ public class BombExplosion : MonoBehaviour
             bombCountDown -= Time.deltaTime;
             int currentCountNum = Mathf.CeilToInt(Mathf.Max(bombCountDown, 0)); // 防止负数
             // 倒计时数字变化时显示文字
+            if(firstTextPop) entityFX.CreatePopUpText(lastCountNum.ToString());
+
+            firstTextPop = false;
+
             if (currentCountNum != lastCountNum && entityFX != null)
             {
+                
                 lastCountNum = currentCountNum;
                 entityFX.CreatePopUpText(lastCountNum.ToString());
                 Debug.Log("倒计时：" + currentCountNum);
