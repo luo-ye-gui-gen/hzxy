@@ -902,7 +902,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1608,19 +1608,17 @@ MonoBehaviour:
   - 250
   - 600
   - 1000
-  accelerate:
+  accelerateSpeed:
   - 10
   - 15
   - 20
   jumpForce: 13
   jumpVelocity: {x: 0, y: 0}
-  isDoubleJumpOpen: 0
-  maxJumpCount: 2
+  groundCheckOffset: {x: 0, y: -0.5}
   groundCheckDistance: 0.98
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  secondJumpRate: 0.8
 --- !u!50 &9025458462420215886
 Rigidbody2D:
   serializedVersion: 4

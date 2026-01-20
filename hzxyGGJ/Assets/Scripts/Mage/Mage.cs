@@ -29,6 +29,7 @@ public class Mage : MonoBehaviour
     public float yPositionOffsetRange = 1.5f;
     public bool isOpenIceSpike = true;      // 是否开启冰刺功能
     #endregion
+    
 
     /// <summary>
     /// 核心方法：纯垂直射线检测 + 虚空向右微移重试，无任何圆形检测
@@ -99,7 +100,7 @@ public class Mage : MonoBehaviour
         
     }
 
-    #region 冰刺核心方法 - 右→左全屏横扫 + 跟随玩家Y轴+随机偏移 + 自动销毁
+    #region 冰刺核心方法 - 右→左全屏横扫  + 自动销毁
     
     IEnumerator CreateIceSpike_Rigidbody(Transform newIceTransform)
     {

@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,9 +171,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98ac0f9699b29d479a9b809c3ba8786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runSpeed: 5
+  currentVelocity: {x: 0, y: 0}
+  accelerateScore:
+  - 250
+  - 600
+  - 1000
+  accelerateSpeed:
+  - 10
+  - 15
+  - 20
   jumpForce: 5
   jumpVelocity: {x: 0, y: 0}
-  maxJumpCount: 2
+  groundCheckOffset: {x: 0, y: -0.5}
   groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
