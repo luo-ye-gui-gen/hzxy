@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EnvironmentController : MonoBehaviour
 {
-    [Tooltip("将子Transform拖到场景片段的末端")]
-    public List<Transform> spawnPointsList = new List<Transform>();
-    public EnvironmentController environmentController2;
-    public EnvironmentController environmentController3;
+    
 
-    private void Start()
+    public Transform StartPoint;
+    public Transform EndPoint;
+
+    public float RetunLength()
     {
-        environmentController2.gameObject.SetActive(false);
-        environmentController3.gameObject.SetActive(false);
+        return EndPoint.position.x - StartPoint.position.x;
     }
 }
