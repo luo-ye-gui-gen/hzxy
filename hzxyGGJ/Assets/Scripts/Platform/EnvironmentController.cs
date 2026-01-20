@@ -5,6 +5,12 @@ using UnityEngine;
 public class EnvironmentController : MonoBehaviour
 {
     
-    [Tooltip("将子Transform拖到场景片段的末端")]
-    public Transform spawnPoint;
+
+    public Transform StartPoint;
+    public Transform EndPoint;
+
+    public float RetunLength()
+    {
+        return EndPoint.position.x - StartPoint.position.x;
+    }
 }
