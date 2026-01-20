@@ -10,17 +10,22 @@ public class PlayerHealth : MonoBehaviour
     public GameObject heartPrefab;
     public int maxHealth;
     private int health;
+    public bool isAlived;
     void Awake()
     {
+        
         health = maxHealth;
+    }
+
+    void OnEnable()
+    {
+        isAlived = true;
     }
 
     [ContextMenu("¼õÉÙÉúÃü")]
     public void DecreaseHealth()
     {
         health--;
-
-        
 
         Color newColor = hearts[health].GetComponent<Image>().color;
 

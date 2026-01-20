@@ -35,6 +35,8 @@ public class FirePrefab : MonoBehaviour
 
         if(collision.tag == "Bomb")
         {
+            if(collision.GetComponent<BombExplosion>().isStarted) return;
+            
             collision.GetComponent<BombExplosion>().SetBombActive();
 
             Destroy(gameObject);

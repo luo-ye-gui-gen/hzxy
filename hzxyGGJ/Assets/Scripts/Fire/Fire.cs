@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Fire : MonoBehaviour
 {
@@ -35,7 +36,12 @@ public class Fire : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+
+            if(Time.timeScale==0) return;
+            
             FirefirePrefab();
+            
         }
     }
 

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float originJumpForce;
 
     [Header("二段跳设置")]
-    [Tooltip("? 勾选=开启二段跳 | ? 取消=关闭二段跳（变为单段跳）")]
+    [Tooltip("勾选=开启二段跳 | ? 取消=关闭二段跳（变为单段跳）")]
     [SerializeField] private bool isDoubleJumpOpen = true;  // 二段跳总开关【核心新增】
     [Tooltip("最大跳跃次数（2=二段跳，1=普通跳）")]
     [SerializeField] private int maxJumpCount = 2;
@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(!GameManager.instance.playerHealth.isAlived) return;
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();

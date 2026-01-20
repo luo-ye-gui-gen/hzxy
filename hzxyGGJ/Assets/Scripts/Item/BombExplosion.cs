@@ -26,7 +26,7 @@ public class BombExplosion : MonoBehaviour
     // 状态标记
     private bool hasExploded = false;
     private int lastCountNum;
-    private bool isStarted = false; // 默认未激活
+    public bool isStarted = false; // 默认未激活
     private float initialCountDown; // 缓存初始倒计时
     private bool firstTextPop;
     private Coroutine lightSpawnCoroutine; // 红光生成协程引用

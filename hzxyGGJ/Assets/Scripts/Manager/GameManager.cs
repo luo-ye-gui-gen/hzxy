@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0;
+        
+        playerHealth.isAlived = false;
+        //Time.timeScale = 0;
     }
 
     public void GamePause()
