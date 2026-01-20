@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mage : MonoBehaviour
 {
+    public List<Transform> iceTransforms = new();
     public Transform player;
     #region  主角前方生成冰刺
     [Header("===== 冰刺生成核心配置 =====")]
@@ -74,23 +75,40 @@ public class Mage : MonoBehaviour
 
     public IEnumerator CreateIceSpikesCor(int amount,float time)
     {
-        for(int i = 0; i < amount; i++)
+        List<Transform> newIceTransforms = new List<Transform>();
+
+        List<Transform> tempList = new List<Transform>(iceTransforms);
+        // 2. 循环取出指定数量的随机元素
+        for (int j = 0; j < amount; j++)
         {
-            CreateIceSpike_Rigidbody();
+            // 随机选一个索引
+            int randomIndex = Random.Range(0, tempList.Count);
+            // 取出该索引对应的元素
+            Transform selected = tempList[randomIndex];
+            // 添加到新列表
+            newIceTransforms.Add(selected);
+            // 从副本中移除，避免重复选取
+            tempList.RemoveAt(randomIndex);
+        }
+        foreach(var item in newIceTransforms)
+        {
+            StartCoroutine(CreateIceSpike_Rigidbody(item));
             yield return new WaitForSeconds(time);
         }
+            
         
     }
 
     #region 冰刺核心方法 - 右→左全屏横扫 + 跟随玩家Y轴+随机偏移 + 自动销毁
     
-    void CreateIceSpike_Rigidbody()
+    IEnumerator CreateIceSpike_Rigidbody(Transform newIceTransform)
     {
-        // 1. 基础位置：屏幕最右侧X轴 + 玩家Y轴（核心修改）
-        Vector3 spawnPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)); // 屏幕最右侧X轴
-        // 核心：以玩家Y轴为基准，加上随机上下偏移
-        float randomYOffset = Random.Range(-yOffsetRange+yPositionOffsetRange, yOffsetRange+yPositionOffsetRange);
-        spawnPos = new Vector3(spawnPos.x, player.position.y + randomYOffset, 0);
+        newIceTransform.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        newIceTransform.gameObject.SetActive(false);
+        
+        // 1. 基础位置
+        Vector3 spawnPos = newIceTransform.position;
 
         // 2. 生成冰刺预制体（保留你预制体的旋转/缩放）
         GameObject ice = Instantiate(iceSpikePrefab, spawnPos, Quaternion.identity);
@@ -104,10 +122,8 @@ public class Mage : MonoBehaviour
         iceRb.gravityScale = 0;                       // 重力缩放0，防止下坠
         iceRb.velocity = new Vector2(-iceMoveSpeed, 0);// X轴负方向（向左）移动
 
-        // 调整冰刺旋转（匹配向左移动的朝向）
-        ice.transform.rotation = Quaternion.Euler(0, 0, 90);
         // 保持原有缩放
-        ice.transform.localScale = new Vector3(0.22f, 0.34f, 1);
+        ice.transform.localScale = new Vector3(0.26f, 0.49f, 1);
 
         // 5. 自动销毁：冰刺移出屏幕左侧后销毁，无内存堆积
         Destroy(ice, 8f);
