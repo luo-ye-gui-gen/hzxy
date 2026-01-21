@@ -60,6 +60,8 @@ public class Fire : MonoBehaviour
         FirePrefab newScript =  newFire.GetComponent<FirePrefab>();
 
         newScript.SetupFirePrefab(xYelocity + GetComponent<Rigidbody2D>().velocity.x,FireLiveTime);
+
+        AudioManager.instance.PlaySFX(3,null);
     }
 
     public void FireIncrease()

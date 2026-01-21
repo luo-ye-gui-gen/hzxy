@@ -10,8 +10,9 @@ public class PlayerHealth : MonoBehaviour
     public Transform heartTransform;
     public GameObject heartPrefab;
     public int maxHealth;
-    private int health;
+    public int health;
     public bool isAlived;
+    public PlayerAnimator playerAnimator;
     void Awake()
     {
         
@@ -66,8 +67,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        health = 0;
+        isAlived = false;
         ScoreManager.Instance.PauseScore();
-        GameManager.instance.GameOver();
+        PauseButton.instance.pauseButton.gameObject.SetActive(false);
+        AudioManager.instance.PlaySFX(0,null);
     }
 }
