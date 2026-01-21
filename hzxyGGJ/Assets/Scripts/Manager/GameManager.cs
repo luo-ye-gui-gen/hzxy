@@ -33,8 +33,7 @@ public class GameManager : MonoBehaviour
     {
         RestartButton.instance.restartButton.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(false);
-        PauseButton.instance.pauseButton.gameObject.SetActive(false);
-        playerHealth.isAlived = false;
+        
         isGamePaused = true;
         Time.timeScale = 0;
     }
@@ -68,7 +67,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     IEnumerator CountdownToResume()
     {
-        Debug.Log("Ω¯»Î–Ø≥Ã");
+        AudioManager.instance.PlaySFX(1,null);
         isIEnumerator = true;
         ResumeButton.instance.countdownText.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(isGamePaused);
