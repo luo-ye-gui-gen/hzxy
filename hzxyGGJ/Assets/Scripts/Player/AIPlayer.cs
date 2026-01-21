@@ -30,12 +30,15 @@ public class AIPlayer : MonoBehaviour
     [SerializeField] private Vector2 groundCheckOffset = new Vector2(0, -0.8f); // 已下调到角色底部
     [Tooltip("地面图层（需在Inspector指定）")]
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask trapLayer;
 
     [Header("AI自动跳跃检测设置")]
     [Tooltip("前方检测点的X轴距离（玩家右侧多远检测）")]
     [SerializeField] private float forwardCheckDistance = 1.2f;
+    [SerializeField] private float forwardCheckTrapDistance = 1.2f;
     [Tooltip("前方检测点的Y轴偏移（玩家脚下多高检测）")]
     [SerializeField] private float forwardCheckYOffset = -0.8f; // 同步下调
+    [SerializeField] private float forwardCheckTrapYOffset = -0.8f; // 同步下调
     [Tooltip("检测到前方无地面时，延迟多久跳跃（单位：秒）")]
     [SerializeField] private float jumpDelay = 0.1f;
     [Tooltip("二段跳延迟（一段跳后多久触发二段跳）")]
@@ -71,6 +74,7 @@ public class AIPlayer : MonoBehaviour
 
         CheckGrounded();
         CheckForwardGround();
+        CheckForwardTrap();
     }
 
     private void Update()
@@ -156,6 +160,29 @@ public class AIPlayer : MonoBehaviour
         }
     }
 
+    // AI核心：检测前方是否有陷阱
+    private void CheckForwardTrap()
+    {
+        // 计算前方检测点的位置
+        Vector2 forwardCheckPos = new Vector2(
+            transform.position.x + forwardCheckTrapDistance,
+            transform.position.y + forwardCheckTrapYOffset
+        );
+
+        // 检测前方是否有地面
+        Collider2D forwardGround = Physics2D.OverlapCircle(forwardCheckPos, groundCheckRadius, trapLayer);
+
+        // 绘制调试用的检测点
+        DrawDebugCircle(forwardCheckPos, groundCheckRadius, forwardGround ? Color.cyan : Color.yellow);
+
+        // 如果脚下有地面，但前方有陷阱 → 准备跳跃
+        if (isGrounded && forwardGround != null && !shouldJump)
+        {
+            shouldJump = true;
+            jumpTimer = Time.time + jumpDelay;
+        }
+    }
+
     private void DrawDebugCircle(Vector2 center, float radius, Color color, int segments = 16)
     {
         float angleStep = 360f / segments;
@@ -186,6 +213,14 @@ public class AIPlayer : MonoBehaviour
         );
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(forwardCheckPos, groundCheckRadius);
+
+        // 绘制AI前方Trap检测点的Gizmos
+        Vector2 forwardTrapCheckPos = new Vector2(
+            transform.position.x + forwardCheckTrapDistance,
+            transform.position.y + forwardCheckTrapYOffset
+        );
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(forwardTrapCheckPos, groundCheckRadius);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

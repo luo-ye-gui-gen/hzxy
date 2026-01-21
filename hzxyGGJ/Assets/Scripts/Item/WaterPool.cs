@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WaterPool : MonoBehaviour
 {
+
+    private void Start()
+    {
+        
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag=="Player")

@@ -490,6 +490,14 @@ PrefabInstance:
       propertyPath: EnvironmentPrefab.Array.data[0]
       value: 
       objectReference: {fileID: 1755459285}
+    - target: {fileID: 3443959026998206572, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761901153706324132, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4010353256011384996, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
       propertyPath: m_SortingLayer
       value: -1
@@ -521,6 +529,10 @@ PrefabInstance:
     - target: {fileID: 6491081044658066321, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753223864601663795, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7380585582605803439, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1894,7 +1906,7 @@ GameObject:
   - component: {fileID: 1374537020}
   - component: {fileID: 1374537022}
   m_Layer: 0
-  m_Name: Player
+  m_Name: AIPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2053,19 +2065,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8741654f62be09047b7af3cb446bf2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5
+  runSpeed: 7
   currentVelocity: {x: 0, y: 0}
-  jumpForce: 8.2
+  jumpForce: 10
   jumpVelocity: {x: 0, y: 0}
   isDoubleJumpOpen: 1
   maxJumpCount: 2
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.28
   groundCheckOffset: {x: 0, y: -1.25}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  forwardCheckDistance: 1.2
-  forwardCheckYOffset: -1.2
+  trapLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  forwardCheckDistance: 2.2
+  forwardCheckTrapDistance: 5
+  forwardCheckYOffset: -1.23
+  forwardCheckTrapYOffset: -0.37
   jumpDelay: 0.1
   doubleJumpDelay: 0.5
   autoDoubleJump: 1

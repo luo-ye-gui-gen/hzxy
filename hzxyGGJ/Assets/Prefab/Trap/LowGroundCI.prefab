@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1436890877326586596}
   - component: {fileID: 1907480023068723666}
   - component: {fileID: 1730016145935748916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowGroundCI
   m_TagString: GroundCI
   m_Icon: {fileID: 0}
