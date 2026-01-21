@@ -10,6 +10,11 @@ public class PauseButton : MonoBehaviour
     [Header("暂停相关按钮")]
     public Button pauseButton;     // 暂停游戏按钮（TMPro Button）
 
+    private void Start()
+    {
+        pauseButton.gameObject.SetActive(true);
+    }
+
     void Awake()
     {
         if (instance == null && instance != this)
