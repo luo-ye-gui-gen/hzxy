@@ -34,5 +34,17 @@ public class PlayerGet : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
+
+        if(collision.tag == "GroundCI")
+        {
+            GameManager.instance.playerHealth.DecreaseHealth();
+
+            Destroy(collision.gameObject);
+        }
+
+        if(collision.tag == "MageTrigger")
+        {
+            MageManager.instance.SetMageActive();
+        }
     }
 }

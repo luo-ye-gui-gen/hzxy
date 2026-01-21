@@ -8,6 +8,8 @@ TagManager:
   - Wood
   - SmallFire
   - Bomb
+  - GroundCI
+  - MageTrigger
   layers:
   - Default
   - TransparentFX
