@@ -3,9 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum IceType
+{
+    Random,
+    GroundIce,
+    RightIce
+
+}
+
 public class Mage : MonoBehaviour
 {
-    // 目标缩放值（你需要的9）
+    public IceType iceType;
     public Vector3 targetScale = new Vector3(9f, 9f, 1f);
     // 缩放总时长（秒），值越小缩放越快
     public float duration = 1f;
@@ -51,6 +59,7 @@ public class Mage : MonoBehaviour
 
     void Start()
     {
+        iceType = IceType.Random;
         startScale = Vector3.zero;
         Mask.localScale = startScale;
 
@@ -63,18 +72,34 @@ public class Mage : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    public void SetupIceType(IceType iceType)
+    {
+        this.iceType = iceType;
+    }
 
     public void AnimationTrigger()
     {
-        int randomAmount = UnityEngine.Random.Range(0,100);
+        if(iceType == IceType.Random)
+        {
+            int randomAmount = UnityEngine.Random.Range(0,100);
 
-        if (randomAmount < 50)
+            if (randomAmount < 50)
+            {
+                SpawnSpikeRayCheck();
+                return;
+            }
+            else
+                CreateIceSpikes();
+        }
+        else if(iceType == IceType.GroundIce)
         {
             SpawnSpikeRayCheck();
-            return;
         }
-        else
+        else if(iceType == IceType.RightIce)
+        {
             CreateIceSpikes();
+        }
+        
 
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -27,14 +28,14 @@ public class PlayerHealth : MonoBehaviour
     {
         health--;
 
-        Color newColor = hearts[health].GetComponent<Image>().color;
+        Color newColor = hearts.First().GetComponent<Image>().color;
 
         newColor.a = 0;
 
         hearts[health].GetComponent<Image>().color = newColor;
 
         if(health<=0)
-            GameManager.instance.GameOver();
+            Die();
     }
 
     public void IncreaseHealth()
@@ -60,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ResetHealth()
     {
-        health = 0;
+        health = 2;
     }
 
     public void Die()
