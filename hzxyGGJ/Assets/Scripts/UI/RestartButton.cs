@@ -11,7 +11,7 @@ public class RestartButton : MonoBehaviour
     public Button restartButton;
     void Awake()
     {
-        if (instance == null)
+        if (instance == null && instance != this)
             instance = this;
         else
             Destroy(gameObject);

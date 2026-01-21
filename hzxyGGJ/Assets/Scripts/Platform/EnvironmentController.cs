@@ -13,4 +13,9 @@ public class EnvironmentController : MonoBehaviour
     {
         return EndPoint.position.x - StartPoint.position.x;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameManager.instance.playerHealth.Die();
+    }
 }

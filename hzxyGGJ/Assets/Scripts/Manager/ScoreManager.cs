@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
     // 当前总分数（私有，外部只读）
     private float currentScore;
     // 游戏是否运行中（控制暂停时停止加分）
-    private bool isGameRunning = true;
+    public bool isGameRunning = true;
 
     // 对外提供只读的分数属性，方便其他脚本调用（比如结算面板）
     public int CurrentScore => Mathf.FloorToInt(currentScore);

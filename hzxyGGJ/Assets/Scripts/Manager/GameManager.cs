@@ -31,9 +31,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        RestartButton.instance.restartButton.gameObject.SetActive(true);
+        ResumeButton.instance.resumeButton.gameObject.SetActive(false);
+        PauseButton.instance.pauseButton.gameObject.SetActive(false);
         playerHealth.isAlived = false;
-        //Time.timeScale = 0;
+        isGamePaused = true;
+        Time.timeScale = 0;
     }
 
     public void GamePause()
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         isGamePaused = !isGamePaused;
+        ScoreManager.Instance.isGameRunning = !ScoreManager.Instance.isGameRunning;
         //±ä¼ÌÐø
         if (!isGamePaused) StartCoroutine(CountdownToResume());
         //±äÔÝÍ£

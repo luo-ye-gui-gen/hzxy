@@ -62,4 +62,11 @@ public class PlayerHealth : MonoBehaviour
     {
         health = 0;
     }
+
+    public void Die()
+    {
+        health = 0;
+        ScoreManager.Instance.PauseScore();
+        GameManager.instance.GameOver();
+    }
 }

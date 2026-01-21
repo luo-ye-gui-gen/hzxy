@@ -12,7 +12,7 @@ public class PauseButton : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (instance == null && instance != this)
             instance = this;
         else
             Destroy(gameObject);
