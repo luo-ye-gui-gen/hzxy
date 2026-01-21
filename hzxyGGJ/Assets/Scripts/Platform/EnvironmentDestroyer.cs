@@ -14,7 +14,7 @@ public class EnvironmentDestroyer : MonoBehaviour
 
     IEnumerator DestroyAfterDelay()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(15f);
         Destroy(transform.root.gameObject);
     }
 }

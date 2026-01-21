@@ -16,4 +16,13 @@ public class MageAnimationTrigger : MonoBehaviour
     {
         anim.SetBool("AnimationTrigger",AnimationTrigger);
     }
+
+    public void SetMagePlaying()
+    {
+        MageManager.instance.mage.isPlaying = !MageManager.instance.mage.isPlaying;
+    }
+    public void PlayMagicAudio()
+    {
+        AudioManager.instance.PlaySFX(4,null);
+    }
 }

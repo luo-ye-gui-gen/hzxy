@@ -34,7 +34,7 @@ public class Fire : MonoBehaviour
     {
         usedFireTime -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)||Input.GetKeyDown(KeyCode.J))
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
 

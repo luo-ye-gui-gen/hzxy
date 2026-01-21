@@ -39,10 +39,7 @@ public class PlayerGet : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.CompareTag("MageTrigger"))
-        {
-            MageManager.instance.SetMageActive();
-        }
+        
 
         // ?????Ice?GroundCI?
         if ((collision.CompareTag("Ice") || collision.CompareTag("GroundCI")) && !isInvincible)

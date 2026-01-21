@@ -37,10 +37,11 @@ public class BombExplosion : MonoBehaviour
 
     void Update()
     {
+
+        anim.SetBool("Active",isStarted);
         
         if (!isStarted || hasExploded) return; // 未激活或已爆炸则直接返回
 
-        anim.SetBool("Active",isStarted);
         
         if (bombCountDown > 0)
         {
@@ -81,9 +82,6 @@ public class BombExplosion : MonoBehaviour
 
     void Explode()
     {
-        // 停止红光生成协程
-        if (lightSpawnCoroutine != null)
-            StopCoroutine(lightSpawnCoroutine);
 
         // 调用全局震动
         if (CameraShakeManager.Instance != null)

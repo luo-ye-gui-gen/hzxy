@@ -14,11 +14,7 @@ public enum IceType
 public class Mage : MonoBehaviour
 {
     public IceType iceType;
-    public Vector3 targetScale = new Vector3(9f, 9f, 1f);
-    // 缩放总时长（秒），值越小缩放越快
-    public float duration = 1f;
-    // 是否自动开始缩放
-    public bool autoStart = true;
+    public bool isPlaying=false;
 
     private Vector3 startScale; // 初始缩放值（0）
     public Transform Mask;
@@ -59,7 +55,6 @@ public class Mage : MonoBehaviour
 
     void Start()
     {
-        iceType = IceType.Random;
         startScale = Vector3.zero;
         Mask.localScale = startScale;
 
@@ -156,31 +151,17 @@ public class Mage : MonoBehaviour
     [ContextMenu("右边生成冰刺")]
     public void CreateIceSpikes()
     {
-        int randomAmount = UnityEngine.Random.Range(3,5);
+        int randomAmount = UnityEngine.Random.Range(6,10);
         StartCoroutine(CreateIceSpikesCor(randomAmount,1f));
     }
 
 
     public IEnumerator CreateIceSpikesCor(int amount,float time)
     {
-        List<Transform> newIceTransforms = new List<Transform>();
-
-        List<Transform> tempList = new List<Transform>(iceTransforms);
-        // 2. 循环取出指定数量的随机元素
         for (int j = 0; j < amount; j++)
         {
-            // 随机选一个索引
-            int randomIndex = UnityEngine.Random.Range(0, tempList.Count);
-            // 取出该索引对应的元素
-            Transform selected = tempList[randomIndex];
-            // 添加到新列表
-            newIceTransforms.Add(selected);
-            // 从副本中移除，避免重复选取
-            tempList.RemoveAt(randomIndex);
-        }
-        foreach(var item in newIceTransforms)
-        {
-            CreateIceSpike_Rigidbody(item);
+            int randomIndex = UnityEngine.Random.Range(0, iceTransforms.Count);
+            CreateIceSpike_Rigidbody(iceTransforms[randomIndex]);
             yield return new WaitForSeconds(time);
         }
             

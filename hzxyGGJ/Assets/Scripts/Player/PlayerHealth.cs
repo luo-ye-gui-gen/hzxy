@@ -68,6 +68,11 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isAlived = false;
+        Rigidbody2D rb = GetComponentInParent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        rb.gravityScale=0;
+        
+        CameraStopOnPlayerDeath.instance.StopCameraMovement();
         ScoreManager.Instance.PauseScore();
         PauseButton.instance.pauseButton.gameObject.SetActive(false);
         AudioManager.instance.PlaySFX(0,null);
