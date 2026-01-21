@@ -48,9 +48,10 @@ public class EnvironmentSpawner : MonoBehaviour
         Vector3 currentEndWorldPos = current.EndPoint.position;
         // 2. 获取新预制体起始点 相对于 预制体根对象的本地坐标
         Vector3 nextStartLocalPos = nextScript.StartPoint.localPosition;
+
         // 3. 新场景的生成位置 = 当前场景终点世界坐标 - 新预制体起始点的本地X坐标（+ 可选偏移）
         Vector3 spawnPos = new Vector3(
-            currentEndWorldPos.x - nextStartLocalPos.x + xOffest,
+            currentEndWorldPos.x + Mathf.Abs(nextStartLocalPos.x) + xOffest,
             currentEndWorldPos.y - nextStartLocalPos.y, // Y轴也对齐，防止垂直偏移
             currentEndWorldPos.z - nextStartLocalPos.z
         );
