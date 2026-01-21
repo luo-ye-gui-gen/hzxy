@@ -1,9 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Mage : MonoBehaviour
 {
+    // 目标缩放值（你需要的9）
+    public Vector3 targetScale = new Vector3(9f, 9f, 1f);
+    // 缩放总时长（秒），值越小缩放越快
+    public float duration = 1f;
+    // 是否自动开始缩放
+    public bool autoStart = true;
+
+    private Vector3 startScale; // 初始缩放值（0）
+    public Transform Mask;
     public List<Transform> iceTransforms = new();
     public Transform player;
     #region  主角前方生成冰刺
@@ -29,6 +39,54 @@ public class Mage : MonoBehaviour
     public float yPositionOffsetRange = 1.5f;
     public bool isOpenIceSpike = true;      // 是否开启冰刺功能
     #endregion
+
+    public bool isSetActiveFalse1;
+    public bool isSetActiveFalse2;
+
+    void OnEnable()
+    {
+        isSetActiveFalse1 = false;
+        isSetActiveFalse2 = false;
+    }
+
+    void Start()
+    {
+        startScale = Vector3.zero;
+        Mask.localScale = startScale;
+
+    }
+
+    void Update()
+    {
+        if (isSetActiveFalse1 && isSetActiveFalse2)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void AnimationTrigger()
+    {
+        int randomAmount = UnityEngine.Random.Range(0,100);
+
+        if (randomAmount < 50)
+        {
+            SpawnSpikeRayCheck();
+            return;
+        }
+        else
+            CreateIceSpikes();
+
+    }
+
+    public void SetActiveFalse1()
+    {
+        isSetActiveFalse1 = true;
+    }
+    public void SetActiveFalse2()
+    {
+        isSetActiveFalse2 = true;
+    }
+
     
 
     /// <summary>
@@ -38,6 +96,7 @@ public class Mage : MonoBehaviour
     [ContextMenu("生成冰刺")]
     void SpawnSpikeRayCheck()
     {
+    
         // 初始化：检测起点 = 主角X轴 + 初始前方距离，和主角同Y轴高度
         float currentCheckX = player.position.x + startSpawnDistance;
         Vector2 rayStartPos = new Vector2(currentCheckX, player.position.y);
@@ -56,6 +115,7 @@ public class Mage : MonoBehaviour
                 Vector2 spawnPosition = new Vector2(rayStartPos.x, hitGround.point.y);
                 // 生成冰刺，使用地面交点位置
                 Instantiate(icePrefab, spawnPosition+new Vector2(0,1.48f+1.720213f), Quaternion.identity);
+                SetActiveFalse1();
                 return;
             }
 
@@ -64,12 +124,14 @@ public class Mage : MonoBehaviour
             rayStartPos = new Vector2(currentCheckX, player.position.y);
         }
         // 向右检测完所有步数都没地面 → 不生成地刺
+
+        SetActiveFalse1();
     }
 
     [ContextMenu("右边生成冰刺")]
     public void CreateIceSpikes()
     {
-        int randomAmount = Random.Range(3,5);
+        int randomAmount = UnityEngine.Random.Range(3,5);
         StartCoroutine(CreateIceSpikesCor(randomAmount,1f));
     }
 
@@ -83,7 +145,7 @@ public class Mage : MonoBehaviour
         for (int j = 0; j < amount; j++)
         {
             // 随机选一个索引
-            int randomIndex = Random.Range(0, tempList.Count);
+            int randomIndex = UnityEngine.Random.Range(0, tempList.Count);
             // 取出该索引对应的元素
             Transform selected = tempList[randomIndex];
             // 添加到新列表
@@ -93,20 +155,18 @@ public class Mage : MonoBehaviour
         }
         foreach(var item in newIceTransforms)
         {
-            StartCoroutine(CreateIceSpike_Rigidbody(item));
+            CreateIceSpike_Rigidbody(item);
             yield return new WaitForSeconds(time);
         }
             
-        
+        SetActiveFalse1();
     }
 
     #region 冰刺核心方法 - 右→左全屏横扫  + 自动销毁
     
-    IEnumerator CreateIceSpike_Rigidbody(Transform newIceTransform)
+    void CreateIceSpike_Rigidbody(Transform newIceTransform)
     {
         newIceTransform.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        newIceTransform.gameObject.SetActive(false);
         
         // 1. 基础位置
         Vector3 spawnPos = newIceTransform.position;

@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if(!GameManager.instance.playerHealth.isAlived) return;
+
+        if(Time.timeScale == 0) return;
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
