@@ -32,6 +32,6 @@ public class RestartButton : MonoBehaviour
     }
     private void RestartCurrentScene()
     {
-        SceneManager.instance.SwitchScene();
+        SceneManager.instance.SwitchScene(SceneManager.instance.targetSceneName[1]);
     }
 }

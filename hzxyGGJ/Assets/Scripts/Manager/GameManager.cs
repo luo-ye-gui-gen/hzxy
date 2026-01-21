@@ -29,11 +29,12 @@ public class GameManager : MonoBehaviour
         GamePause();
     }
 
+
     public void GameOver()
     {
         RestartButton.instance.restartButton.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(false);
-        
+        BackButton.instance.backButton.gameObject.SetActive(true);
         isGamePaused = true;
         Time.timeScale = 0;
     }
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
         {
             ResumeButton.instance.resumeButton.gameObject.SetActive(isGamePaused);
             RestartButton.instance.restartButton.gameObject.SetActive(isGamePaused);
+            BackButton.instance.backButton.gameObject.SetActive(isGamePaused);
             PauseButton.instance.pauseButton.gameObject.SetActive(!isGamePaused);
             Time.timeScale = isGamePaused ? 0 : 1;
         }
@@ -69,9 +71,10 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX(1,null);
         isIEnumerator = true;
-        ResumeButton.instance.countdownText.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(isGamePaused);
+        ResumeButton.instance.countdownText.gameObject.SetActive(true);
         RestartButton.instance.restartButton.gameObject.SetActive(isGamePaused);
+        BackButton.instance.backButton.gameObject.SetActive(isGamePaused);
         int countdown = 3;
         while (countdown > 0)
         {
