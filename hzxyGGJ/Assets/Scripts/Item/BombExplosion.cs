@@ -24,6 +24,7 @@ public class BombExplosion : MonoBehaviour
     private bool firstTextPop;
     private Coroutine lightSpawnCoroutine; // 红光生成协程引用
     private Animator anim;
+    public GameObject bombFX;
 
     void Start()
     {
@@ -108,6 +109,10 @@ public class BombExplosion : MonoBehaviour
                 }
             }
         }
+
+        AudioManager.instance.PlaySFX(7,null);
+
+        Instantiate(bombFX,transform.position,Quaternion.identity);
 
         // 延迟销毁炸弹
         Destroy(gameObject, 0.1f);

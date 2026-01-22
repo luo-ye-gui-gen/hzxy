@@ -28,6 +28,21 @@ public class ScoreManager : MonoBehaviour
     // 对外提供只读的分数属性，方便其他脚本调用（比如结算面板）
     public int CurrentScore => Mathf.FloorToInt(currentScore);
 
+    // 新增：标记是否已经触发过BGM渐变
+    private bool isBGM0Faded = false;
+    private bool isBGM1Played = false;
+
+    // BGM切换配置
+    [Header("BGM切换配置")]
+    [Tooltip("触发BGM0渐小的分数阈值")]
+    public int fadeOutScore = 900;
+    [Tooltip("切换到BGM1的分数阈值")]
+    public int switchBGMScore = 10000;
+    [Tooltip("BGM音量渐变时间（秒）")]
+    public float bgmFadeTime = 2f;
+    [Tooltip("BGM1的目标音量")]
+    public float bgm1TargetVolume = 0.2f;
+
     private void Awake()
     {
         // 单例：确保场景中只有一个计分管理器
@@ -46,6 +61,10 @@ public class ScoreManager : MonoBehaviour
         // 初始化分数和UI显示
         currentScore = 0;
         UpdateScoreUI();
+
+        // 重置BGM触发标记
+        isBGM0Faded = false;
+        isBGM1Played = false;
     }
 
     private void Update()
@@ -59,6 +78,39 @@ public class ScoreManager : MonoBehaviour
             
             // 实时更新UI显示
             UpdateScoreUI();
+
+            // 检测分数触发BGM渐变
+            CheckBGMTrigger();
+        }
+    }
+
+    /// <summary>
+    /// 检测分数并触发BGM切换逻辑
+    /// </summary>
+    private void CheckBGMTrigger()
+    {
+        int currentIntScore = Mathf.FloorToInt(currentScore);
+
+        // 分数达到900，触发bgm0渐小（只触发一次）
+        if (currentIntScore >= fadeOutScore && !isBGM0Faded)
+        {
+            isBGM0Faded = true;
+            if (AudioManager.instance != null)
+            {
+                // bgm0音量渐小
+                AudioManager.instance.StopBGMWithFade(0, bgmFadeTime);
+            }
+        }
+
+        // 分数达到10000，切换到bgm1并渐大（只触发一次）
+        if (currentIntScore >= switchBGMScore && !isBGM1Played)
+        {
+            isBGM1Played = true;
+            if (AudioManager.instance != null)
+            {
+                // 播放bgm1并渐大到目标音量
+                AudioManager.instance.PlayBGM(1);
+            }
         }
     }
 
@@ -92,5 +144,19 @@ public class ScoreManager : MonoBehaviour
         currentScore = 0;
         UpdateScoreUI();
         isGameRunning = true;
+        
+        // 重置BGM触发标记
+        isBGM0Faded = false;
+        isBGM1Played = false;
+        
+        // 重置BGM播放状态
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.StopAllBGM();
+            // 重新播放bgm0
+            AudioManager.instance.StartCoroutine(
+                AudioManager.instance.FadeInBGM(AudioManager.instance.bgm[0], bgm1TargetVolume, bgmFadeTime)
+            );
+        }
     }
 }

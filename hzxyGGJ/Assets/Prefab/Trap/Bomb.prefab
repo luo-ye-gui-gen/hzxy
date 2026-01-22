@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70ca9dff2eeb2134fadfb2631fde6c59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e10a1b72289e454385de9dff84b7210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   shakeDuration: 0.4
   shakeFrequency: 2
   isStarted: 0
+  bombFX: {fileID: 6582280963248815717, guid: 39d4654a34dc2b243bb21b320d2cf18d, type: 3}
 --- !u!114 &2770148199107346126
 MonoBehaviour:
   m_ObjectHideFlags: 0

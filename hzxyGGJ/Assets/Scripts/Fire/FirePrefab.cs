@@ -28,6 +28,8 @@ public class FirePrefab : MonoBehaviour
     {
         if (collision.tag == "Ice")
         {
+            AudioManager.instance.PlaySFX(5,null);
+
             Destroy(collision.gameObject);
 
             Destroy(gameObject);

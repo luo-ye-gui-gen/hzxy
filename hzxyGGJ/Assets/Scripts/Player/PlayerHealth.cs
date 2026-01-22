@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
     [ContextMenu("ºı…Ÿ…˙√¸")]
     public void DecreaseHealth()
     {
+        AudioManager.instance.PlaySFX(6,null);
         health--;
 
         Color newColor = hearts.First().GetComponent<Image>().color;
@@ -67,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        AudioManager.instance.StopAllBGM();
         isAlived = false;
         Rigidbody2D rb = GetComponentInParent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
