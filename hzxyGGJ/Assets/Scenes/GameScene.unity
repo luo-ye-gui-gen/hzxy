@@ -1283,7 +1283,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 272.04224, y: 6.499999, z: -10}
+  m_LocalPosition: {x: -19.927776, y: 1.5299995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2008,18 +2008,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentController2
       objectReference: {fileID: 0}
-    - target: {fileID: 6078511392631038612, guid: 19dd012b03b68c34ca375ebf1c395924, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6589525553681143849, guid: 19dd012b03b68c34ca375ebf1c395924, type: 3}
-      propertyPath: m_Size.x
-      value: 139.32036
-      objectReference: {fileID: 0}
-    - target: {fileID: 6589525553681143849, guid: 19dd012b03b68c34ca375ebf1c395924, type: 3}
-      propertyPath: m_Offset.x
-      value: 32.234734
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2210,10 +2198,6 @@ PrefabInstance:
     - target: {fileID: 4630141593060928001, guid: 20f327e3aee7e9c4692b3805ba83d0ce, type: 3}
       propertyPath: m_Name
       value: EnvironmentController5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630141593060928001, guid: 20f327e3aee7e9c4692b3805ba83d0ce, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4301,10 +4285,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentController4
       objectReference: {fileID: 0}
-    - target: {fileID: 8941457809010817400, guid: f4d763753e7c6d44095721237aa812b8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4318,6 +4298,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8446915963644744, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
+      propertyPath: m_Size.y
+      value: 13.89971
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446915963644744, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
+      propertyPath: m_Offset.y
+      value: -15.745252
+      objectReference: {fileID: 0}
     - target: {fileID: 3933081595404121904, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
       propertyPath: m_Name
       value: Qishidian
@@ -5031,10 +5019,6 @@ PrefabInstance:
     - target: {fileID: 34144673994287787, guid: fcb3c655680d4134387f2af30e734bf2, type: 3}
       propertyPath: m_Name
       value: EnvironmentController6
-      objectReference: {fileID: 0}
-    - target: {fileID: 34144673994287787, guid: fcb3c655680d4134387f2af30e734bf2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687519958298098287, guid: fcb3c655680d4134387f2af30e734bf2, type: 3}
       propertyPath: m_LocalPosition.x
