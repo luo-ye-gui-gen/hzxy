@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
     [ContextMenu("¼õÉÙÉúÃü")]
     public void DecreaseHealth()
     {
+        if(health==0) return;
         AudioManager.instance.PlaySFX(6,null);
         health--;
 

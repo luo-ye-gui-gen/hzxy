@@ -566,7 +566,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 322d738e793e8e6469d1faf6e17bd88f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.253
   m_Pitch: 1
   Loop: 1
@@ -1381,7 +1381,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.137777, y: 2.3199995, z: -10}
+  m_LocalPosition: {x: -19.927776, y: 1.5299995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1684,7 +1684,7 @@ Transform:
   m_GameObject: {fileID: 581644021}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.137777, y: 2.3199995, z: -10}
+  m_LocalPosition: {x: -19.927776, y: 1.5299995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1919,7 +1919,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 55162deed72720344a1c695dec44d94f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.253
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5853,7 +5853,7 @@ Transform:
   m_GameObject: {fileID: 1370230274899167333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.08, y: -3.14, z: 0}
+  m_LocalPosition: {x: -32.87, y: -3.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5983,6 +5983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb
       objectReference: {fileID: 0}
+    - target: {fileID: 2619466936430979299, guid: b45d005a0cdedd94f9680fe9d71de8d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3583895676462911893, guid: b45d005a0cdedd94f9680fe9d71de8d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.5
@@ -6054,7 +6058,7 @@ MonoBehaviour:
   jumpVelocity: {x: 0, y: 0}
   isDoubleJumpOpen: 0
   maxJumpCount: 0
-  groundCheckRadius: 0.84
+  groundCheckRadius: 0.65
   groundCheckOffset: {x: -0.03, y: -1.25}
   groundLayer:
     serializedVersion: 2

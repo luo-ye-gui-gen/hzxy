@@ -107,6 +107,7 @@ public class LeaderboardManager : MonoBehaviour
     /// <summary>
     /// 清空排行榜数据（测试/重置用）
     /// </summary>
+    [ContextMenu("清除分数")]
     public void ClearAllScores()
     {
         PlayerPrefs.DeleteKey(HighScore1Key);

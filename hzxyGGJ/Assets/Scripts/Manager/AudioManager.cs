@@ -7,14 +7,19 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     [SerializeField] private AudioSource[] sfx;
     public AudioSource[] bgm;
-    
+
     [SerializeField] private float sfxMinimunDistance;
 
     public bool playBGM;
     private int bgmIndex;
 
+    // 第一首BGM的初始音量（直接设置为0.8f）
+    private float bgm0InitVolume = 1f;
     // 记录当前正在播放的BGM音量（用于渐变）
-    private float currentBGMVolume = 0.2f;
+    private float currentBGMVolume;
+
+    // 标记是否正在进行900-1000分的音量渐变
+    private bool isInScoreVolumeFade = false;
 
     void Awake()
     {
@@ -23,21 +28,13 @@ public class AudioManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        // 初始化BGM音量
+        bgmIndex = 0;
+        
+        // 初始化BGM0的音量为0.8f（无渐变，直接固定）
         if (bgm.Length > 0)
         {
-            foreach (var audio in bgm)
-            {
-                audio.volume = 0;
-                audio.loop = true; // 设置BGM循环播放
-            }
-            // 默认播放bgm0并设置初始音量
-            if (bgm.Length > 0)
-            {
-                bgm[0].volume = currentBGMVolume;
-                bgm[0].Play();
-                bgmIndex = 0;
-            }
+            bgm[0].volume = bgm0InitVolume;
+            currentBGMVolume = bgm0InitVolume;
         }
     }
 
@@ -75,7 +72,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 新增：BGM音量渐小协程
+    // 900-1000分区间BGM0音量从0.8f渐变到0.4f的协程
+    public IEnumerator FadeBGM0To04DuringScoreRange(float fadeTime = 1f)
+    {
+        isInScoreVolumeFade = true;
+        AudioSource bgm0 = bgm[0];
+        float startVolume = bgm0InitVolume; // 从初始0.8f开始
+        float targetVolume = 0.4f;          // 渐变到0.4f
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            bgm0.volume = Mathf.Lerp(startVolume, targetVolume, elapsedTime / fadeTime);
+            yield return null;
+        }
+
+        bgm0.volume = targetVolume;
+        currentBGMVolume = targetVolume;
+    }
+
+    // BGM音量渐小协程（直接渐到0）
     public IEnumerator FadeOutBGM(AudioSource audioSource, float fadeTime = 1f)
     {
         float startVolume = audioSource.volume;
@@ -90,33 +107,48 @@ public class AudioManager : MonoBehaviour
 
         audioSource.volume = 0f;
         audioSource.Stop();
+        isInScoreVolumeFade = false;
     }
 
-    // 新增：BGM音量渐大协程
-    public IEnumerator FadeInBGM(AudioSource audioSource, float targetVolume = 0.2f, float fadeTime = 1f)
+    // BGM1专用渐入协程（从0.08f渐变到0.2f）
+    public IEnumerator FadeInBGM1(float fadeTime = 2f)
     {
-        audioSource.volume = 0f;
-        audioSource.Play();
-        float elapsedTime = 0f;
+        AudioSource bgm1 = bgm[1];
+        float startVolume = 0.2f;  
+        float targetVolume = 0.9f; 
+        bgm1.volume = startVolume;
+        bgm1.Play();
 
+        float elapsedTime = 0f;
         while (elapsedTime < fadeTime)
         {
             elapsedTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(0f, targetVolume, elapsedTime / fadeTime);
+            bgm1.volume = Mathf.Lerp(startVolume, targetVolume, elapsedTime / fadeTime);
             yield return null;
         }
-
-        audioSource.volume = targetVolume;
+        bgm1.volume = targetVolume;
         currentBGMVolume = targetVolume;
     }
 
-    public void PlayBGM(int _bgmIndex)
+    // 播放BGM方法（BGM0直接播放，BGM1渐变播放）
+    public void PlayBGM(int _bgmIndex, bool isJianbian)
     {
         bgmIndex = _bgmIndex;
-        // 不再直接停止所有BGM，改为通过渐变控制
-        if (bgmIndex < bgm.Length)
+
+        if (_bgmIndex == 0)
         {
-            StartCoroutine(FadeInBGM(bgm[bgmIndex], 0.2f, 2f)); // 2秒渐大到0.2音量
+            // BGM0直接以0.8f音量播放（无渐变）
+            bgm[0].volume = bgm0InitVolume;
+            bgm[0].Play();
+        }
+        else if (isJianbian && _bgmIndex == 1)
+        {
+            // BGM1从0.08f渐变到0.2f
+            StartCoroutine(FadeInBGM1(2f));
+        }
+        else
+        {
+            bgm[_bgmIndex].Play();
         }
     }
 
@@ -127,14 +159,28 @@ public class AudioManager : MonoBehaviour
             bgm[i].Stop();
             bgm[i].volume = 0;
         }
+        isInScoreVolumeFade = false;
     }
 
-    // 新增：停止指定BGM（带渐隐效果）
+    // 停止BGM0并切换到BGM1的方法
+    public void SwitchFromBGM0ToBGM1(float fadeOutTime = 1f, float fadeInTime = 2f)
+    {
+        // 渐隐BGM0
+        StartCoroutine(FadeOutBGM(bgm[0], fadeOutTime));
+        // 渐入BGM1
+        StartCoroutine(FadeInBGM1(fadeInTime));
+    }
+
     public void StopBGMWithFade(int index, float fadeTime = 1f)
     {
         if (index < bgm.Length)
         {
             StartCoroutine(FadeOutBGM(bgm[index], fadeTime));
         }
+    }
+
+    public bool IsInScoreVolumeFade()
+    {
+        return isInScoreVolumeFade;
     }
 }
