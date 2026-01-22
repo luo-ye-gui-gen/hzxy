@@ -595,7 +595,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -780044317
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4ae69aaf524db54e9f1662623f9c3cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -616,45 +616,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1082669778564755467, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: EnvironmentPrefab.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1082669778564755467, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: EnvironmentPrefab.Array.data[0]
-      value: 
-      objectReference: {fileID: 1755459285}
-    - target: {fileID: 4010353256011384996, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010353256011384996, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1844884629
-      objectReference: {fileID: 0}
-    - target: {fileID: 5722019713838492811, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5722019713838492811, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1844884629
-      objectReference: {fileID: 0}
-    - target: {fileID: 6172202446309584646, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6172202446309584646, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1844884629
-      objectReference: {fileID: 0}
     - target: {fileID: 6491081044658066321, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
       propertyPath: m_Name
       value: EnvironmentController3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491081044658066321, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7380585582605803439, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -695,14 +659,6 @@ PrefabInstance:
     - target: {fileID: 7380585582605803439, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178303092852426508, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178303092852426508, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1844884629
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1899,7 +1855,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1799290203
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1e941dbfe8337a4449a4ffe6ac0ab83d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2974,7 +2930,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -780044317
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4ae69aaf524db54e9f1662623f9c3cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3609,7 +3565,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -780044317
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4ae69aaf524db54e9f1662623f9c3cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3683,11 +3639,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edd96dacc622cc344a656ae85030afbb, type: 3}
---- !u!1 &1755459285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6491081044658066321, guid: c83fda291a443f84ba19f9652fd93c5c, type: 3}
-  m_PrefabInstance: {fileID: 281448990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1801208449
 GameObject:
   m_ObjectHideFlags: 0
