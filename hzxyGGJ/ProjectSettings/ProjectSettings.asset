@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: "\u6D41\u6D6A\u706B\u82D7"
-  productName: hzxyGGJ
+  companyName: "\u771F\u7684\u662F\u4F60\u554A"
+  productName: "\u6D41\u6D6A\u706B\u82D7"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
