@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class StartButton : MonoBehaviour
 {
     public Button startButton;
+    public static StartButton instance;
+
+    void Awake()
+    {
+        if (instance == null && instance != this)
+            instance = this;
+        else
+            Destroy(gameObject);
+
+    }
 
     private void OnEnable()
     {

@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        LeaderboardManager.Instance.AddNewScore(ScoreManager.Instance.CurrentScore);
         RestartButton.instance.restartButton.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(false);
         BackButton.instance.backButton.gameObject.SetActive(true);
