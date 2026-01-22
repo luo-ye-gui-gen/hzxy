@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+
         LeaderboardManager.Instance.AddNewScore(ScoreManager.Instance.CurrentScore);
         RestartButton.instance.restartButton.gameObject.SetActive(true);
         ResumeButton.instance.resumeButton.gameObject.SetActive(false);
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void GamePause()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !isIEnumerator)
+        if(Input.GetKeyDown(KeyCode.Escape) && !isIEnumerator&&playerHealth.isAlived)
         {
             Pause();
         }
