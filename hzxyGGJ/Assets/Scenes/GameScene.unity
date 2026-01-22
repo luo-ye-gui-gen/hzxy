@@ -2008,6 +2008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentController2
       objectReference: {fileID: 0}
+    - target: {fileID: 6078511392631038612, guid: 19dd012b03b68c34ca375ebf1c395924, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2198,6 +2202,10 @@ PrefabInstance:
     - target: {fileID: 4630141593060928001, guid: 20f327e3aee7e9c4692b3805ba83d0ce, type: 3}
       propertyPath: m_Name
       value: EnvironmentController5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630141593060928001, guid: 20f327e3aee7e9c4692b3805ba83d0ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4285,6 +4293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentController4
       objectReference: {fileID: 0}
+    - target: {fileID: 8941457809010817400, guid: f4d763753e7c6d44095721237aa812b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4313,6 +4325,22 @@ PrefabInstance:
     - target: {fileID: 3933081595404121904, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169277514722073992, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7098007
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169277514722073992, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
+      propertyPath: m_Size.y
+      value: 15.703852
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169277514722073992, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
+      propertyPath: m_Offset.x
+      value: 5.9481983
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169277514722073992, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
+      propertyPath: m_Offset.y
+      value: 6.6729
       objectReference: {fileID: 0}
     - target: {fileID: 7335148853098992596, guid: 4c9225ad099dda541b6ec8a20d6bf2de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5019,6 +5047,10 @@ PrefabInstance:
     - target: {fileID: 34144673994287787, guid: fcb3c655680d4134387f2af30e734bf2, type: 3}
       propertyPath: m_Name
       value: EnvironmentController6
+      objectReference: {fileID: 0}
+    - target: {fileID: 34144673994287787, guid: fcb3c655680d4134387f2af30e734bf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687519958298098287, guid: fcb3c655680d4134387f2af30e734bf2, type: 3}
       propertyPath: m_LocalPosition.x

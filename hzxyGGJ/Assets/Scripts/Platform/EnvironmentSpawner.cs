@@ -11,6 +11,7 @@ public class EnvironmentSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(hasSpawner);
         if (hasSpawner) return;
         if(!collision.CompareTag("Player")) return;
 
